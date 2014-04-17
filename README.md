@@ -12,7 +12,13 @@ Instead of this
 ```
 use this method to lazy load the google maps api only when needed
 ``` javascript
-lazyGMaps(function(){
-  // callback 
+lazyGMaps({
+  success: function() {
+      // start creating your maps here
+  },
+  beforeLoad: function() {
+    // is there something you wanna do before loading gmaps ?
+    // maybe showing a dialog or spinner ?
+  }
 });
 ```
