@@ -1,7 +1,9 @@
-function lazyGMaps(callback){
-	
+function lazyGMaps(settings){
+	console.log(settings);
 	if(window.google != undefined && google.maps != undefined){
-		callback();
+		if(settings.success != undefined) {
+			settings.success();
+		}
 		return;
 	}
 
@@ -15,9 +17,12 @@ function lazyGMaps(callback){
 			var script = document.createElement("script");
 				script.setAttribute("src", src);
 				document.head.appendChild(script);
+				if(settings.beforeLoad != undefined) {
+					settings.beforeLoad();
+				}
 				script.onload = function(){
-					if(callback!=undefined) {
-						callback();
+					if(settings.success!=undefined) {
+						settings.success();
 					}
 				}
 		}
